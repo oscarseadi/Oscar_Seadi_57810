@@ -1,0 +1,72 @@
+{% extends 'tortas/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Tortas Personalizadas</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2>Diseña tu Torta!</h2></td>
+        <td>
+            <a
+            href=""
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Tortas Personalizadas</title>
+    <!-- Incluyendo Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Tipo</th>
+                    <th>Relleno</th>
+                    <th>Cubierta</th>
+                    <th>Cantidad de personas</th>
+                    <th>Motivo</th>
+                    <th>Agregados</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for t in tortasp %}               
+                <tr>
+                    <td>{{ t.id }}</td>
+                    <td>{{ t.tipo }}</td>
+                    <td>{{ t.relleno }}</td>
+                    <td>{{ t.cubierta }}</td>
+                    <td>{{ t.cantidad_personas }}</td>
+                    <td>{{ t.motivo }}</td>
+                    <td>{{ t.agregados }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Incluyendo Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock contenido %}
