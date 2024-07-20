@@ -1,0 +1,39 @@
+{% extends 'tortas/index.html' %}
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0 text-center">Login</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Acceso a tu cuenta</h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="id_username" class="col-sm-4 col-form-label">Nombre de usuario</label>
+                            <div class="col-sm-8">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="id_password" class="col-sm-4 col-form-label">Contraseña</label>
+                            <div class="col-sm-8">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-primary" value="Entrar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

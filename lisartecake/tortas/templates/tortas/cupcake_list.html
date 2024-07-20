@@ -1,0 +1,90 @@
+{% extends 'tortas/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Cupcakes</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2>Cupcakes</h2></td>
+        <td>
+            <a href="{% url 'cupcakeCreate' %}" class="btn btn"><i class="fa fa-plus fa-lg" title="Crear"> </i></a>
+        </td> 
+        <td>
+            <a href="{% url 'buscarCupcake' %}" class="btn btn"><i class="fa-solid fa-magnifying-glass" title="Buscar"> </i></a>
+        </td>        
+    </tr>
+</table>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de cupcakes</title>
+    <!-- Incluyendo Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Relleno</th>
+                    <th>Cubierta</th>
+                    <th>Docenas</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for c in cupcake_list %}               
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.tipo }}</td>
+                    <td>{{ c.relleno }}</td>
+                    <td>{{ c.cubierta }}</td>
+                    <td>{{ c.docenas }}</td>
+                    <td>{{ c.precio }}</td>
+                    <td>   
+                                             
+                        <a
+                          href="{% url 'cupcakeUpdate' c.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-edit fa-sm" title="Edita tu torta"></i>
+                        </a>
+                        <a
+                          href=""
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa-solid fa-cart-plus" title="Agregar al carrito de compra"></i>
+                        </a>
+                        <a
+                          href="{% url 'cupcakeDelete' c.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                        </a>               
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Incluyendo Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock contenido %}

@@ -1,0 +1,33 @@
+{% extends 'tortas/index.html' %}
+
+{% block titulo %}
+    <h1 class="mb-5 text-center">Logout Exitoso</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body text-center">
+                        <h2 class="card-title text-danger mb-4">¡Has cerrado sesión correctamente!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}
+
+<!-- CSS para estilos adicionales -->
+<style>
+    .card {
+        border: none; /* Sin borde */
+    }
+    .card-title {
+        font-size: 2.5rem; /* Tamaño grande para el título */
+    }
+    .card-text {
+        font-size: 1.25rem; /* Tamaño del texto */
+        color: #6c757d; /* Color del texto */
+    }
+</style>

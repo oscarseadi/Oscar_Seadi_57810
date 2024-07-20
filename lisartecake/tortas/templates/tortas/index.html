@@ -19,29 +19,92 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-            <div class="container px-5">
-                <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'tortas' %}">Tortas</a>
-                <a class="navbar-brand" href="{% url 'tortasp' %}">Tortas Personalizadas</a>
-                <a class="navbar-brand" href="{% url 'modelados' %}">Modelados</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5">
+        <div class="navbar-brand">
+            <a href="{% url 'home' %}" class="inicio-link">Inicio</a>
+        </div>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav me-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'tortas' %}">Tortas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'tortasp' %}">Tortas Personalizadas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'cupcakes' %}">Cupcakes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'modelados' %}">Modelados</a></li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link" style="color: white; text-decoration: none;">Logout</button>                       
+                        </form>
+                        <div class="navbar-brand">
+                        <a href="{% url 'perfil' %}" class="inicio-link">[{{ user.first_name }} {{ user.last_name }}]</a>
+                        </div>
+                    </li>
+                    <div class="text-center">
+                        <a href="{% url 'agregar_avatar' %}"><img src="{{ request.session.avatar}}" height="40px" weight="40px" alt="Imagen de perfil"></a>
+                    </div>
+                    <li class="nav-item">
+                        <a href="{% url 'ver_carrito' %}" class="btn btn-secondary cart-btn" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                            <i class="fa-solid fa-cart-shopping" title="Carrito de compras"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- CSS to style the navbar links uniformly and add space -->
+<style>
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+        margin-right: 1rem; 
+    }
+    .navbar-nav .nav-link:last-child {
+        margin-right: 0; 
+    }
+    .navbar-nav .btn-secondary {
+        margin-left: 1rem; 
+    }
+    .nav-link.btn {
+        padding: 0;
+    }
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center; 
+    }
+    .navbar-brand .inicio-link {
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }
+    .navbar-brand .inicio-link:hover {
+        color: white; 
+    }
+    .cart-btn i {
+        color: white;
+    }
+</style>
+
         <!-- Header-->
         <header class="masthead text-center text-white">
             <div class="masthead-content">
                 <div class="container px-5">
                     
                     {% block titulo %}
-                    <h1 class="masthead-heading mb-0">Bienvenidos a Lis Arte Cake</h1>
+                    <h1 class="masthead-heading mb-0">Bienvenidos a LisArteCake</h1>
                     <h2 class="masthead-subheading mb-0">Endulza tu vida con cada bocado!</h2>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>                       
                     {% endblock titulo %}                      
@@ -107,13 +170,36 @@
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-black">
-            <div class="container px-5"><p class="m-0 text-center text-white small">Derechos Reservados &copy; LisArteCake 2024</p></div>
-        </footer>
+        <!-- Footer -->
+<footer class="py-5 bg-black">
+    <div class="container d-flex justify-content-center mb-3">
+        <i class="icon-class" aria-label="Icon description"></i>
+        <a
+            href="https://www.instagram.com/lisarte_cake" 
+            class="btn btn-secondary mx-2" 
+            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" 
+            aria-label="Follow us on Instagram"
+            title="Síguenos en Instagram!"
+        >
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+    <div class="container d-flex justify-content-center mb-3">
+        <a href="{% url 'acerca' %}" class="text-white small mx-2" style="text-decoration: none;">Acerca</a>
+    </div>
+    <div class="container d-flex justify-content-center mb-3">
+        <a href="{% url 'contacto' %}" class="text-white small mx-2" style="text-decoration: none;">Contacto</a>
+    </div>
+    <div class="container px-5">
+        <p class="m-0 text-center text-white small">LisArteCake 2024 &copy; Derechos Reservados</p>
+    </div>
+</footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{% static 'js/scripts.js' %}"></script>
     </body>
 </html>
+
+

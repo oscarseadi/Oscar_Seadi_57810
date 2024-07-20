@@ -1,0 +1,22 @@
+{% extends 'tortas/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Delete Tortas</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="text-center">
+        <h2>¿Seguro que quiere eliminar este item?
+        <p style="color:blue">{{ object }}</p></h2>
+    </div>
+    <div class="text-center mt-3">
+        <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+    </div>
+</form>
+{% endblock contenido %}
+

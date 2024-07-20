@@ -10,14 +10,13 @@
 
 <table>
     <tr>
-        <td width="200"><h2>Diseña tu Torta!</h2></td>
+        <td width="300"><h2>Diseña tu Torta!</h2></td>
         <td>
-            <a
-            href=""
-            class="btn btn-primary btn-sm"
-            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
-            </a>
-        </td>        
+            <a href="{% url 'tortapForm' %}" class="btn btn"><i class="fa fa-plus fa-lg" title="Crear"> </i></a>
+        </td> 
+        <td>
+            <a href="{% url 'buscarTortap' %}" class="btn btn"><i class="fa-solid fa-magnifying-glass" title="Buscar"> </i></a>
+        </td>       
     </tr>
 </table>
 
@@ -35,13 +34,14 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <th>Tipo</th>
                     <th>Relleno</th>
                     <th>Cubierta</th>
                     <th>Cantidad de personas</th>
                     <th>Motivo</th>
                     <th>Agregados</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -56,6 +56,27 @@
                     <td>{{ t.cantidad_personas }}</td>
                     <td>{{ t.motivo }}</td>
                     <td>{{ t.agregados }}</td>
+                    <td>{{ t.precio }}</td>
+                    <td>                        
+                        <a
+                          href="{% url 'tortapUpdate' t.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-edit fa-sm" title="Edita tu torta"></i>
+                        </a>
+                        <a
+                          href=""
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa-solid fa-cart-plus" title="Agregar al carrito de compra"></i>
+                        </a>
+                        <a
+                          href="{% url 'tortapDelete' t.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                        </a>                
+                    </td>
                 </tr>
             {% endfor %}
 

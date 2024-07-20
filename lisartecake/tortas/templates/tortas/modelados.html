@@ -12,12 +12,11 @@
     <tr>
         <td width="200"><h2>Modelados</h2></td>
         <td>
-            <a
-            href=""
-            class="btn btn-primary btn-sm"
-            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
-            </a>
-        </td>        
+            <a href="{% url 'modeladoForm' %}" class="btn btn"><i class="fa fa-plus fa-lg" title="Crear"> </i></a>
+        </td>
+        <td>
+            <a href="{% url 'buscarModelado' %}" class="btn btn"><i class="fa-solid fa-magnifying-glass" title="Buscar"> </i></a>
+        </td>         
     </tr>
 </table>
 
@@ -35,10 +34,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <th>Descripcion</th>
                     <th>Dimensiones</th>
                     <th>Miscelaneos</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +49,27 @@
                     <td>{{ m.descripcion }}</td>
                     <td>{{ m.dimensiones }}</td>
                     <td>{{ m.misc }}</td>
+                    <td>{{ m.precio }}</td>
+                    <td>                        
+                        <a
+                          href="{% url 'modeladoUpdate' m.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-edit fa-sm" title="Añade una descripción"></i>
+                        </a>
+                        <a
+                          href="{% url 'agregar_al_carrito' m.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa-solid fa-cart-plus" title="Agregar al carrito de compra"></i>
+                        </a>
+                        <a
+                          href="{% url 'modeladoDelete' m.id %}"
+                          class="btn btn"
+                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                          ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                        </a>                
+                    </td>
                 </tr>
             {% endfor %}
 

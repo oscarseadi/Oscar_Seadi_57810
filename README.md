@@ -8,7 +8,10 @@ LisArteCake es el emprendimiento de mi madre repostera. Actualmente ella no tien
 
 - Listado de Tortas
 - Listado de Tortas Personalizadas
+- Listado de Cupcakes
 - Listado de Modelados
+- Carrito (En desarrollo)
+- Boton de Pago (En desarrollo)
 
 
 ## Running Tests
@@ -17,17 +20,26 @@ Para probar algunas features, por favor probar con estas rutas:
 
 
     /home/
-    
-    #__ Formularios
-
-    /tortas_form/
-    /tortasp_form/
-    /modelados_form/
-
-    #__ Busqueda
-    
+    /acerca/
+    /contacto/
+    /tortas/
+    /tortasp/
+    /modelados/
+    /cupcakes/
     /buscarTorta/
-    /encontrarTorta/
+    /buscarTortap/ 
+    /buscarCupcake/ 
+    /buscarModelado/
+    /login/
+    /logout/
+    /registro/
+    /carrito/
+    /pagar/
+    /perfil/     
+    
+### Usuario de prueba / Panel de usuario
+    user: coder
+    password: coder123
 ## Support
 
 Para soporte, enviar correo a oscar.seadi@gmail.com

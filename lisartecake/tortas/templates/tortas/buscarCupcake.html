@@ -1,0 +1,19 @@
+{% extends 'tortas/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Buscar Cupcakes</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form action="{% url 'encontrarCupcake' %}" method="get">
+    {% csrf_token %}
+    <table>
+        <p> Ingrese el patron de busqueda: <input type="text" name="Buscar" id="Buscar"></p>
+    </table>
+    <input type="submit" value="Buscar">
+</form>
+
+{% endblock contenido %}
